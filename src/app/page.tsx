@@ -16,14 +16,51 @@ export default function Home() {
               https://withoutsummer.shop/
             </Link>
           </li>
-          <li></li>
-          <Link
-            href="https://u-ur.kr/category/etc/68/"
-            target="_blank"
-            className="hover:bg-sky-100"
-          >
-            https://u-ur.kr/category/etc/68/
-          </Link>
+          <li>
+            <Link
+              href="https://u-ur.kr/category/etc/68/"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://u-ur.kr/category/etc/68/
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://tildeseoul.co.kr/"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://tildeseoul.co.kr/
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://greensee.co.kr/"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://greensee.co.kr/
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://mienne.store/"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://mienne.store/
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://reetkeem.com/"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://reetkeem.com/
+            </Link>
+          </li>
         </ul>
       </section>
 
@@ -35,7 +72,24 @@ export default function Home() {
           라이프스타일
         </h1>
         <ul className="list-none">
-          <li>https://havehaus.kr/</li>
+          <li>
+            <Link
+              href="https://havehaus.kr/"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://havehaus.kr/
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://m.cellfusionc.co.kr/"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://m.cellfusionc.co.kr/
+            </Link>
+          </li>
         </ul>
       </section>
 
@@ -45,7 +99,15 @@ export default function Home() {
       >
         <h1 className="text-3xl font-bold font-stretch-semi-expanded">가방</h1>
         <ul className="list-none">
-          <li>https://nangshop.kr/27</li>
+          <li>
+            <Link
+              href="https://nangshop.kr/27"
+              target="_blank"
+              className="hover:bg-sky-100"
+            >
+              https://nangshop.kr/27
+            </Link>
+          </li>
         </ul>
       </section>
     </div>
