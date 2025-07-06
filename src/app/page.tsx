@@ -6,7 +6,7 @@ export default function Home() {
     <div className="m-[40px]">
       <section className="mb-6">
         <h1 className="text-3xl font-bold font-stretch-semi-expanded">패션</h1>
-        <ul>
+        <ul className="list-none">
           <li>
             <Link
               href="https://withoutsummer.shop/"
@@ -34,7 +34,7 @@ export default function Home() {
         <h1 className="text-3xl font-bold font-stretch-semi-expanded">
           라이프스타일
         </h1>
-        <ul>
+        <ul className="list-none">
           <li>https://havehaus.kr/</li>
         </ul>
       </section>
@@ -44,7 +44,7 @@ export default function Home() {
       "
       >
         <h1 className="text-3xl font-bold font-stretch-semi-expanded">가방</h1>
-        <ul>
+        <ul className="list-none">
           <li>https://nangshop.kr/27</li>
         </ul>
       </section>
