@@ -4,6 +4,11 @@ export default function Home() {
   return (
     // <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
     <div className="m-[40px]">
+      <section>
+        <form action="">
+          <input type="text" />
+        </form>
+      </section>
       <section className="mb-6">
         <h1 className="text-3xl font-bold font-stretch-semi-expanded">패션</h1>
         <ul className="list-none">
