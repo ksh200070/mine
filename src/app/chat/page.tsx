@@ -13,14 +13,14 @@ const ChatPage = () => {
   const [messages, setMessages] = useState<message[]>([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const { socket, isConnected } = useSocket();
-  const [userId, setUserId] = useState(+new Date());
+  const [userId] = useState(+new Date());
 
   useEffect(() => {
     if (!socket) {
       return;
     }
 
-    socket.on("message", (data: any) => {
+    socket.on("message", (data: message) => {
       setMessages((messages) => [...messages, ...[data]]);
     });
 
