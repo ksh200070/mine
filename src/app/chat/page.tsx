@@ -42,7 +42,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="flex flex-col rounded-xl border bg-card text-card-foreground shadow w-[300px] mx-auto h-[450px] pt-2">
+    <div className="flex flex-col rounded-xl border bg-card text-card-foreground shadow w-[300px] mx-auto h-[280px] pt-2">
       {!isConnected && "연결중"}
       {/* <div className="p-6">
         <p>{isConnected ? "연결 완료" : "연결중"}</p>
