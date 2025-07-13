@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSocket } from "@/components/socket-provider";
+import LoadingBun from "../../components/LoadingBun";
+import LoadingDots from "../../components/LoadingDots";
+import LoadingDonut from "../../components/LoadingDonut";
 
 interface message {
   userId: number;
@@ -44,8 +47,11 @@ const ChatPage = () => {
   return (
     <div className="flex flex-col rounded-xl border bg-card text-card-foreground shadow w-[300px] mx-auto h-[280px] pt-2 mb-6">
       {!isConnected && (
-        <div className="p-6">
-          <p> 연결중</p>
+        <div className="p-6 grid place-items-center h-[100%]">
+          {/* <p> 연결중</p> */}
+          {/* <LoadingBun /> */}
+          <LoadingDots />
+          {/* <LoadingDonut /> */}
         </div>
       )}
       {isConnected && (
@@ -73,7 +79,7 @@ const ChatPage = () => {
                 type="text"
                 value={currentMessage}
                 onChange={(e) => setCurrentMessage(e.target.value)}
-                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 flex-1"
+                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 flex-1"
               ></input>
               <button
                 type="submit"
