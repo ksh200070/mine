@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSocket } from "@/components/socket-provider";
-import LoadingBun from "../../components/LoadingBun";
 import LoadingDots from "../../components/LoadingDots";
-import LoadingDonut from "../../components/LoadingDonut";
 
 interface message {
   userId: number;
@@ -18,6 +16,16 @@ const ChatPage = () => {
   const { socket, isConnected } = useSocket();
   const [userId] = useState(+new Date());
 
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  // 스크롤이 맨 아래에 있는지 확인하는 함수
+  const isScrolledToBottom = () => {
+    const el = containerRef.current;
+    if (!el) return false;
+    return el.scrollHeight - el.scrollTop <= el.clientHeight + 5; // 오차 범위 5px
+  };
+
   useEffect(() => {
     if (!socket) {
       return;
@@ -28,6 +36,10 @@ const ChatPage = () => {
     });
 
     socket.emit("join"); // 예: "chat-123"
+
+    if (isScrolledToBottom()) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
 
     return () => {
       socket.off("message");
@@ -45,13 +57,13 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="flex flex-col rounded-xl border bg-card text-card-foreground shadow w-[300px] mx-auto h-[280px] pt-2 mb-6">
+    <div
+      ref={containerRef}
+      className="flex flex-col rounded-xl border bg-card text-card-foreground shadow w-[300px] mx-auto h-[240px] pt-2 mb-6"
+    >
       {!isConnected && (
         <div className="p-6 grid place-items-center h-[100%]">
-          {/* <p> 연결중</p> */}
-          {/* <LoadingBun /> */}
           <LoadingDots />
-          {/* <LoadingDonut /> */}
         </div>
       )}
       {isConnected && (
@@ -72,6 +84,8 @@ const ChatPage = () => {
                 </div>
               ))}
             </div>
+
+            <div ref={bottomRef} />
           </div>
           <div className="flex items-center p-6 pt-0">
             <form className="flex w-full items-center space-x-2">
