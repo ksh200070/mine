@@ -33,25 +33,28 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    const socketInstance = new (ClientIO as any)(
-      process.env.NEXT_PUBLIC_SITE_URL!,
-      {
-        path: "/api/socket/io",
-        addTrailingSlash: false,
-        transports: ["polling", "websocket"], // 안정적인 연결
-        forceNew: true,
-        withCredentials: true,
-      }
-    );
-    socketInstance.on("connect", async () => {
-      setIsConnected(true);
+    fetch("/api/socket/io").then(() => {
+      const socketInstance = new (ClientIO as any)(
+        process.env.NEXT_PUBLIC_SITE_URL!,
+        {
+          path: "/api/socket/io",
+          addTrailingSlash: false,
+          transports: ["polling", "websocket"], // 안정적인 연결
+          forceNew: true,
+          withCredentials: true,
+        }
+      );
+
+      socketInstance.on("connect", () => {
+        console.log("✅ 소켓 연결됨");
+        setIsConnected(true);
+      });
+
+      setSocket(socketInstance);
+      return () => {
+        socketInstance.disconnect();
+      };
     });
-
-    setSocket(socketInstance);
-
-    return () => {
-      socketInstance.disconnect();
-    };
   }, []);
 
   return (
