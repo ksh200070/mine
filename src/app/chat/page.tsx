@@ -24,6 +24,8 @@ const ChatPage = () => {
       setMessages((messages) => [...messages, ...[data]]);
     });
 
+    socket.emit("join"); // 예: "chat-123"
+
     return () => {
       socket.off("message");
     };
@@ -36,16 +38,18 @@ const ChatPage = () => {
       content: currentMessage,
     });
     setCurrentMessage("");
+    console.log(userId);
   };
 
   return (
-    <div className="rounded-xl border bg-card text-card-foreground shadow w-[300px] mx-auto">
-      <div className="p-6">
+    <div className="flex flex-col rounded-xl border bg-card text-card-foreground shadow w-[300px] mx-auto h-[450px] pt-2">
+      {!isConnected && "연결중"}
+      {/* <div className="p-6">
         <p>{isConnected ? "연결 완료" : "연결중"}</p>
-      </div>
+      </div> */}
       {isConnected && (
         <>
-          <div className="p-6 pt-0">
+          <div className="h-[100%] p-8 pt-0 overflow-scroll">
             <div className="space-y-4">
               {messages.map((message, index) => (
                 <div
@@ -53,8 +57,8 @@ const ChatPage = () => {
                   className={
                     "flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm " +
                     (message.userId !== userId
-                      ? "ml-auto bg-blue-400 text-white"
-                      : "bg-zinc-100")
+                      ? "bg-zinc-100"
+                      : "ml-auto bg-blue-400 text-white")
                   }
                 >
                   {message.content}
