@@ -19,6 +19,15 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseServerIo) => {
       path: path,
       addTrailingSlash: false,
     });
+
+    io.on("connection", (socket) => {
+      console.log("✅ 소켓 연결 성공:", socket.id);
+
+      socket.on("disconnect", () => {
+        console.log("❌ 소켓 연결 해제:", socket.id);
+      });
+    });
+
     res.socket.server.io = io;
   }
 };

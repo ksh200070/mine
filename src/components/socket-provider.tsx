@@ -34,11 +34,16 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_SITE_URL);
-    const socketInstance = new (ClientIO as any)({
-      path: "/api/socket/io",
-      addTrailingSlash: false,
-    });
-    console.log(socketInstance);
+    const socketInstance = new (ClientIO as any)(
+      process.env.NEXT_PUBLIC_SITE_URL!,
+      {
+        path: "/api/socket/io",
+        addTrailingSlash: false,
+        transports: ["polling", "websocket"], // 안정적인 연결
+        forceNew: true,
+        withCredentials: true,
+      }
+    );
     socketInstance.on("connect", async () => {
       setIsConnected(true);
     });
